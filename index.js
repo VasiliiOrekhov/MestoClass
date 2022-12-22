@@ -4,7 +4,7 @@ import { FormValidator } from './js/FormValidator';
 import { UserInfo } from './js/UserInfo';
 import { OpenCardPopup } from './js/OpenCardPopup';
 import { initialCards } from './js/constants';
-import { PlacePopup, Popup } from './js/PlacePopup';
+import { PlacePopup } from './js/PlacePopup';
 import { ProfilePopup } from './js/ProfilePopup';
 
 const card = new Card();

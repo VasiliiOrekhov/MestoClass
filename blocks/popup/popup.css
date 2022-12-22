@@ -1,0 +1,57 @@
+@import url(./__content/popup__content.css);
+@import url(./__close/popup__close.css);
+@import url(./__title/popup__title.css);
+@import url(./__form/popup__form.css);
+@import url(./__input/popup__input.css);
+@import url(./__button/popup__button.css);
+@import url(./_is-opened/popup_is-opened.css);
+@import url(./__error/popup__error.css);
+@import url(./__img_increase/popup__img_increase.css);
+
+.popup {
+  position: fixed;
+  /* top: calc((100% - 376px) / 2); */
+  /* left: calc((100% - 430px) / 2); */
+  width: 430px;
+  height: 376px;
+  align-items: center;
+  justify-content: center;
+  display: none;
+  z-index: 10;
+}
+
+.popup-opened {
+  display: flex;
+  top: calc((100% - 376px) / 2);
+  left: calc((100% - 430px) / 2);
+}
+.popup-opened-img {
+  display: flex;
+  /* width: 80vw;
+  height: 80vh; */
+  width: max-content;
+  height: max-content;
+  object-fit: contain;
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-repeat: no-repeat;
+  background-position: center, center;
+  background-size: contain;
+}
+
+.popup-background {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.popup-background-opened {
+  display: block;
+}

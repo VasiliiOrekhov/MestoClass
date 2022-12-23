@@ -16,7 +16,7 @@ const userInfo = new UserInfo();
 
 const formValidator = new FormValidator();
 
-//сохранение данных попапа
+//сохранение данных попап
 const newCardCallback = (name, link) => {
   cardList.addCard(name, link);
 };

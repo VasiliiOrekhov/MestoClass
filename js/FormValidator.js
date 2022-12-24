@@ -1,14 +1,16 @@
 export class FormValidator {
-  constructor() {
-    this.form = document.querySelectorAll('.popup__form');
+  constructor(form) {
+    this.form = form;
     this.setEventListeners();
   }
 
   checkInputValidity(event) {
+    event.preventDefault();
     const formEvent = event.target;
     const validError = formEvent.nextSibling.nextSibling;
     if (formEvent.validity.valid) {
       validError.textContent = '';
+      this.setSubmitButtonState();
     } else {
       if (formEvent.validity.valueMissing) {
         // Если поле пустое
@@ -24,8 +26,8 @@ export class FormValidator {
   }
 
   setSubmitButtonState() {
-    const popupButton = this.querySelector('.popup__button');
-    const popupInput = this.querySelectorAll('.popup__input');
+    const popupButton = this.form.querySelector('.popup__button');
+    const popupInput = this.form.querySelectorAll('.popup__input');
     if (popupInput[0].validity.valid && popupInput[1].validity.valid) {
       popupButton.removeAttribute('disabled');
       popupButton.classList.add('popup__button_no');
@@ -36,11 +38,6 @@ export class FormValidator {
   }
 
   setEventListeners() {
-    this.form.forEach((el) => {
-      el.addEventListener('input', this.checkInputValidity);
-    });
-    this.form.forEach((el) => {
-      el.addEventListener('input', this.setSubmitButtonState);
-    });
+    this.form.addEventListener('input', this.checkInputValidity.bind(this));
   }
 }

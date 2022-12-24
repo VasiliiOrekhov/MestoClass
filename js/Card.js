@@ -11,8 +11,9 @@ export class Card {
     this.likeButton.classList.toggle('place-card__like-icon_liked');
   }
 
-  remove() {
+  remove(event) {
     this.card.remove();
+    event.stopImmediatePropagation();
   }
 
   create() {
@@ -39,6 +40,6 @@ export class Card {
   listners() {
     this.imgInCard.addEventListener('click', () => this.openCardPopupCallback(this.imgInCard));
     this.likeButton.addEventListener('click', () => this.like());
-    this.deleteButton.addEventListener('click', () => this.remove());
+    this.deleteButton.addEventListener('click', (event) => this.remove(event));
   }
 }

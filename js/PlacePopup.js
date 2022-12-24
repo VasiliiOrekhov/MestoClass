@@ -1,3 +1,4 @@
+import { FormValidator } from './FormValidator';
 export class PlacePopup {
   constructor(newCardCallback) {
     this.popup = document.querySelector('.popup-place');
@@ -9,6 +10,7 @@ export class PlacePopup {
     this.listner();
     this.newCardCallback = newCardCallback;
     this.allValidError = document.querySelectorAll('.popup__error');
+    new FormValidator(this.form);
   }
 
   handle() {
@@ -24,8 +26,10 @@ export class PlacePopup {
     this.buttonOpen.addEventListener('click', this.handle.bind(this)); //стрелочная функция или bind
     this.buttonClose.addEventListener('click', () => this.handle());
     this.background.addEventListener('click', this.handle.bind(this));
-    this.buttonJoin.addEventListener('click', this.saveInfo.bind(this));
-    this.buttonJoin.addEventListener('click', this.handle.bind(this));
+    this.buttonJoin.addEventListener('click', (event) => {
+      this.saveInfo(event);
+      this.handle();
+    });
   }
 
   saveInfo(event) {

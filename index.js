@@ -1,6 +1,4 @@
-import { Card } from './js/Card';
 import { CardList } from './js/CardList';
-import { FormValidator } from './js/FormValidator';
 import { UserInfo } from './js/UserInfo';
 import { OpenCardPopup } from './js/OpenCardPopup';
 import { initialCards } from './js/constants';
@@ -25,7 +23,6 @@ const openCardPopupCallback = (nodeImg) => {
 const userInfo = new UserInfo();
 const cardList = new CardList(initialCards, openCardPopupCallback);
 cardList.init();
-const formValidator = new FormValidator();
-const placePopup = new PlacePopup(newCardCallback);
-const profilePopup = new ProfilePopup(editProfileCallback);
+new PlacePopup(newCardCallback);
+new ProfilePopup(editProfileCallback);
 const openCardPopup = new OpenCardPopup();

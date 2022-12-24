@@ -1,3 +1,4 @@
+import { FormValidator } from './FormValidator';
 export class ProfilePopup {
   constructor(editProfileCallback) {
     this.popup = document.querySelector('.popup-profile');
@@ -9,6 +10,7 @@ export class ProfilePopup {
     this.editProfileCallback = editProfileCallback;
     this.listner();
     this.allValidError = document.querySelectorAll('.popup__error');
+    new FormValidator(this.form);
   }
 
   handle() {

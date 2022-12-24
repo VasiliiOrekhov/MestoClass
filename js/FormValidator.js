@@ -1,7 +1,6 @@
 export class FormValidator {
   constructor() {
-    this.formProfile = document.forms.profile;
-    this.formCard = document.forms.new;
+    this.form = document.querySelectorAll('.popup__form');
     this.setEventListeners();
   }
 
@@ -28,7 +27,6 @@ export class FormValidator {
     const popupButton = this.querySelector('.popup__button');
     const popupInput = this.querySelectorAll('.popup__input');
     if (popupInput[0].validity.valid && popupInput[1].validity.valid) {
-      //как оптимизировать?
       popupButton.removeAttribute('disabled');
       popupButton.classList.add('popup__button_no');
     } else {
@@ -38,9 +36,11 @@ export class FormValidator {
   }
 
   setEventListeners() {
-    this.formCard.addEventListener('input', this.checkInputValidity);
-    this.formCard.addEventListener('input', this.setSubmitButtonState);
-    this.formProfile.addEventListener('input', this.checkInputValidity);
-    this.formProfile.addEventListener('input', this.setSubmitButtonState);
+    this.form.forEach((el) => {
+      el.addEventListener('input', this.checkInputValidity);
+    });
+    this.form.forEach((el) => {
+      el.addEventListener('input', this.setSubmitButtonState);
+    });
   }
 }

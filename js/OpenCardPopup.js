@@ -1,19 +1,16 @@
 export class OpenCardPopup {
   constructor() {
-    this.imgIncrease = document.querySelector('.popup__img_increase');
     this.popup = document.querySelector('.popup-open_img');
-    this.placesList = document.querySelector('.places-list');
+    this.imgIncrease = this.popup.querySelector('.popup__img_increase');
     this.buttonClose = this.popup.querySelector('.popup__close');
     this.background = document.querySelector('.popup-background_card');
-    this.listner();
+    this.listners();
   }
 
-  open(event) {
-    if (event.target.classList.contains('place-card__image')) {
-      this.imgIncrease.src = event.target.style.backgroundImage.slice(5, -2);
-      this.popup.classList.toggle('popup-opened-img');
-      this.background.classList.toggle('popup-background-opened');
-    }
+  open(url) {
+    this.imgIncrease.src = url;
+    this.popup.classList.toggle('popup-opened-img');
+    this.background.classList.toggle('popup-background-opened');
   }
 
   close() {
@@ -21,8 +18,7 @@ export class OpenCardPopup {
     this.background.classList.toggle('popup-background-opened');
   }
 
-  listner() {
-    this.placesList.addEventListener('click', this.open.bind(this));
+  listners() {
     this.buttonClose.addEventListener('click', this.close.bind(this));
     this.background.addEventListener('click', this.close.bind(this));
   }

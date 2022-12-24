@@ -1,22 +1,18 @@
 export class Card {
-  constructor(name, link) {
+  constructor(name, link, openCardPopupCallback) {
     this.name = name;
     this.link = link;
-    this.placesList = document.querySelector('.places-list');
-    this.listner();
+    this.likeButton = null;
+    this.deleteButton = null;
+    this.openCardPopupCallback = openCardPopupCallback;
   }
 
-  like(event) {
-    if (event.target.classList.contains('place-card__like-icon')) {
-      event.target.classList.toggle('place-card__like-icon_liked');
-    }
+  like() {
+    this.likeButton.classList.toggle('place-card__like-icon_liked');
   }
 
-  remove(event) {
-    if (event.target.classList.contains('place-card__delete-icon')) {
-      const cardDel = event.target.parentNode.parentNode;
-      cardDel.remove();
-    }
+  remove() {
+    this.card.remove();
   }
 
   create() {
@@ -33,10 +29,16 @@ export class Card {
 
     //превращает строку карточки вnode
     const node = document.createRange().createContextualFragment(template);
+    this.card = node.firstChild;
+    this.likeButton = this.card.querySelector('.place-card__like-icon');
+    this.deleteButton = this.card.querySelector('.place-card__delete-icon');
+    this.imgInCard = this.card.querySelector('.place-card__image');
+    this.listners();
     return node;
   }
-  listner() {
-    this.placesList.addEventListener('click', this.like);
-    this.placesList.addEventListener('click', this.remove);
+  listners() {
+    this.imgInCard.addEventListener('click', () => this.openCardPopupCallback(this.imgInCard));
+    this.likeButton.addEventListener('click', () => this.like());
+    this.deleteButton.addEventListener('click', () => this.remove());
   }
 }

@@ -6,25 +6,26 @@ import { OpenCardPopup } from './js/OpenCardPopup';
 import { initialCards } from './js/constants';
 import { PlacePopup } from './js/PlacePopup';
 import { ProfilePopup } from './js/ProfilePopup';
-
-const card = new Card();
-
-const cardList = new CardList(initialCards);
-cardList.init();
-
-const userInfo = new UserInfo();
-
-const formValidator = new FormValidator();
+import { getLink } from './js/utils';
 
 //сохранение данных попап
 const newCardCallback = (name, link) => {
   cardList.addCard(name, link);
 };
-const placePopup = new PlacePopup(newCardCallback);
 
 const editProfileCallback = (name, author) => {
   userInfo.updateUserInfo(name, author);
 };
-const profilePopup = new ProfilePopup(editProfileCallback);
 
+const openCardPopupCallback = (nodeImg) => {
+  const imgUrl = getLink(nodeImg.style.backgroundImage);
+  openCardPopup.open(imgUrl);
+};
+
+const userInfo = new UserInfo();
+const cardList = new CardList(initialCards, openCardPopupCallback);
+cardList.init();
+const formValidator = new FormValidator();
+const placePopup = new PlacePopup(newCardCallback);
+const profilePopup = new ProfilePopup(editProfileCallback);
 const openCardPopup = new OpenCardPopup();

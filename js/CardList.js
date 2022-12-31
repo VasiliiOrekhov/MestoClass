@@ -5,12 +5,21 @@ export class CardList {
     this.initialCards = initialCards;
     this.placesList = document.querySelector('.places-list');
     this.openCardPopupCallback = openCardPopupCallback;
+    // this.deleteCardCallback = deleteCardCallback;
   }
 
-  init() {
+  init(cardContainer) {
     const container = document.createDocumentFragment();
-    this.initialCards.forEach((el) => {
-      const card = new Card(el.name, el.link, this.openCardPopupCallback);
+    // this.initialCards.forEach((el) => {
+    cardContainer.forEach((el) => {
+      const card = new Card(
+        el.name,
+        el.link,
+        el.likes,
+        el._id,
+        this.openCardPopupCallback
+        // this.deleteCardCallback
+      );
       const node = card.create();
 
       container.append(node);

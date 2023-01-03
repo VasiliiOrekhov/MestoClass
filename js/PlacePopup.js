@@ -22,16 +22,14 @@ export class PlacePopup {
     this.allValidError.forEach(function (item) {
       item.textContent = '';
     });
-    //this.buttonJoin.textContent = '+';
   }
 
   listner() {
-    this.buttonOpen.addEventListener('click', this.handle.bind(this)); //стрелочная функция или bind
+    this.buttonOpen.addEventListener('click', this.handle.bind(this)); //стрелочная функция или bind чтобы не потерять контекст
     this.buttonClose.addEventListener('click', () => this.handle());
     this.background.addEventListener('click', this.handle.bind(this));
     this.buttonJoin.addEventListener('click', (event) => {
       this.saveInfo(event);
-      //this.handle();
     });
   }
 

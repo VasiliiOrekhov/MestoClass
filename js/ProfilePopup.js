@@ -32,7 +32,6 @@ export class ProfilePopup {
     this.buttonClose.addEventListener('click', this.handle.bind(this));
     this.background.addEventListener('click', this.handle.bind(this));
     this.buttonSave.addEventListener('click', this.saveInfo.bind(this));
-    //this.buttonSave.addEventListener('click', this.handle.bind(this));
   }
 
   saveInfo(event) {

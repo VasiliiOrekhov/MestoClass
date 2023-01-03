@@ -1,22 +1,37 @@
-import { Api, api } from './Api';
+import { api } from './Api';
 export class Card {
   constructor(name, link, like, cardId, openCardPopupCallback) {
     this.name = name;
     this.link = link;
-    this.likes = like.length;
+    this.likes = like;
     this.cardId = cardId;
     this.likeButton = null;
     this.deleteButton = null;
     this.openCardPopupCallback = openCardPopupCallback;
   }
-  //разобраться с логикой работы
+
   async like() {
-    try {
-      const result = await api.like(this.cardId);
-      const { likes } = await result.json();
-      this.card.querySelector('.like-counter').textContent = likes.length;
-      this.likeButton.classList.toggle('place-card__like-icon_liked');
-    } catch (error) {}
+    if (this.likes.some((el) => el._id === '102b96759d35d1e0dc4e16bd')) {
+      try {
+        const result = await api.deslike(this.cardId);
+        const { likes } = await result.json();
+        this.card.querySelector('.like-counter').textContent = likes.length;
+        this.likeButton.classList.toggle('place-card__like-icon_liked');
+        this.likes = likes;
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      try {
+        const result = await api.like(this.cardId);
+        const { likes } = await result.json();
+        this.card.querySelector('.like-counter').textContent = likes.length;
+        this.likeButton.classList.toggle('place-card__like-icon_liked');
+        this.likes = likes;
+      } catch (error) {
+        console.log(error);
+      }
+    }
   }
 
   async remove(event) {
@@ -39,7 +54,7 @@ export class Card {
         <div class="place-card__description">
             <h3 class="place-card__name">${this.name}</h3>
             <button class="place-card__like-icon"></button>
-            <div class="like-counter">${this.likes}</div>
+            <div class="like-counter">${this.likes.length}</div>
         </div>
     </div>`;
 
@@ -49,6 +64,11 @@ export class Card {
     this.likeButton = this.card.querySelector('.place-card__like-icon');
     this.deleteButton = this.card.querySelector('.place-card__delete-icon');
     this.imgInCard = this.card.querySelector('.place-card__image');
+    this.likes.forEach((el) => {
+      if (el._id === '102b96759d35d1e0dc4e16bd') {
+        this.likeButton.classList.toggle('place-card__like-icon_liked');
+      }
+    });
     this.listners();
     return node;
   }

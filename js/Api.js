@@ -3,8 +3,6 @@ export class Api {
     this.url = options.baseUrl;
     this.headers = options.headers;
     this.getCards();
-
-    // тело конструктора
   }
 
   getUserProfile() {
@@ -58,16 +56,20 @@ export class Api {
       headers: this.headers,
     });
   }
+
   async like(cardId) {
     return await fetch(`${this.url}/cards/like/${cardId}`, {
       method: 'PUT',
       headers: this.headers,
     });
-    // .then((res) => res.json())
-    // .then((res) => console.log(res));
   }
 
-  // другие методы работы с API
+  async deslike(cardId) {
+    return await fetch(`${this.url}/cards/like/${cardId}`, {
+      method: 'DELETE',
+      headers: this.headers,
+    });
+  }
 }
 
 export const api = new Api({

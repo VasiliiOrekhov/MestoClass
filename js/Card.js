@@ -13,7 +13,7 @@ export class Card {
   async like() {
     if (this.likes.some((el) => el._id === '102b96759d35d1e0dc4e16bd')) {
       try {
-        const result = await api.deslike(this.cardId);
+        const result = await api.dislike(this.cardId);
         const { likes } = await result.json();
         this.card.querySelector('.like-counter').textContent = likes.length;
         this.likeButton.classList.toggle('place-card__like-icon_liked');
@@ -21,7 +21,9 @@ export class Card {
       } catch (error) {
         console.log(error);
       }
-    } else {
+      return;
+    }
+    {
       try {
         const result = await api.like(this.cardId);
         const { likes } = await result.json();
@@ -38,7 +40,7 @@ export class Card {
     event.stopImmediatePropagation(); //для остановки срабатывания на других областях
     try {
       const result = await api.deleteCard(this.cardId);
-      await result.json(); //ждем ответ от сервера
+      await result.json(); //ждем преобразования ответа от сервера из json в объект
       this.card.remove();
     } catch (error) {
       console.log(error);
@@ -64,11 +66,11 @@ export class Card {
     this.likeButton = this.card.querySelector('.place-card__like-icon');
     this.deleteButton = this.card.querySelector('.place-card__delete-icon');
     this.imgInCard = this.card.querySelector('.place-card__image');
-    this.likes.forEach((el) => {
-      if (el._id === '102b96759d35d1e0dc4e16bd') {
-        this.likeButton.classList.toggle('place-card__like-icon_liked');
-      }
-    });
+
+    if (this.likes.some((el) => el._id === '102b96759d35d1e0dc4e16bd')) {
+      this.likeButton.classList.toggle('place-card__like-icon_liked');
+    }
+
     this.listners();
     return node;
   }

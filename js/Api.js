@@ -1,3 +1,10 @@
+const userApi = {
+  baseUrl: 'https://nomoreparties.co/cohort11',
+  headers: {
+    authorization: 'e5cf0ae6-c049-4812-8bb5-267f014b9213',
+    'Content-Type': 'application/json',
+  },
+};
 export class Api {
   constructor(options) {
     this.url = options.baseUrl;
@@ -64,7 +71,7 @@ export class Api {
     });
   }
 
-  async deslike(cardId) {
+  async dislike(cardId) {
     return await fetch(`${this.url}/cards/like/${cardId}`, {
       method: 'DELETE',
       headers: this.headers,
@@ -72,10 +79,4 @@ export class Api {
   }
 }
 
-export const api = new Api({
-  baseUrl: 'https://nomoreparties.co/cohort11',
-  headers: {
-    authorization: 'e5cf0ae6-c049-4812-8bb5-267f014b9213',
-    'Content-Type': 'application/json',
-  },
-});
+export const api = new Api(userApi);

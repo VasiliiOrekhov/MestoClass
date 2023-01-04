@@ -8,8 +8,8 @@ export class CardList {
 
   init(cardContainer) {
     const container = document.createDocumentFragment();
-    cardContainer.forEach((el) => {
-      const card = new Card(el.name, el.link, el.likes, el._id, this.openCardPopupCallback);
+    cardContainer.forEach(({ name, link, likes, _id }) => {
+      const card = new Card(name, link, likes, _id, this.openCardPopupCallback);
       const node = card.create();
       container.append(node);
     });

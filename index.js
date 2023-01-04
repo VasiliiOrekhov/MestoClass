@@ -12,10 +12,6 @@ const openCardPopupCallback = (nodeImg) => {
   openCardPopup.open(imgUrl);
 };
 
-const userInfo = new UserInfo();
-
-const openCardPopup = new OpenCardPopup();
-
 //загрузка с сервера данных профиля при открытии страницы
 function getUserProfile() {
   api
@@ -28,8 +24,6 @@ function getUserProfile() {
     .catch((err) => console.log(`Данные профиля с сервера не получены. Ошибка: ${err}`));
 }
 getUserProfile();
-
-const cardList = new CardList(initialCards, openCardPopupCallback);
 
 //изменение данных профиля и отправка данных на сервер вариант 1
 // const editProfileCallback = (name, author) => {
@@ -80,5 +74,8 @@ const newCardCallback = async (name, link) => {
   }
 };
 
+const userInfo = new UserInfo();
 const profilePopup = new ProfilePopup(editProfileCallback);
 const placePopup = new PlacePopup(newCardCallback);
+const openCardPopup = new OpenCardPopup();
+const cardList = new CardList(initialCards, openCardPopupCallback);

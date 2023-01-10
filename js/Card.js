@@ -11,7 +11,7 @@ export class Card {
   }
 
   async like() {
-    if (this.likes.some((el) => el._id === '102b96759d35d1e0dc4e16bd')) {
+    if (this.likes.some((el) => el._id === api.myId)) {
       try {
         const result = await api.dislike(this.cardId);
         const { likes } = await result.json();
@@ -66,8 +66,7 @@ export class Card {
     this.likeButton = this.card.querySelector('.place-card__like-icon');
     this.deleteButton = this.card.querySelector('.place-card__delete-icon');
     this.imgInCard = this.card.querySelector('.place-card__image');
-
-    if (this.likes.some((el) => el._id === '102b96759d35d1e0dc4e16bd')) {
+    if (this.likes.some((el) => el._id === api.myId)) {
       this.likeButton.classList.toggle('place-card__like-icon_liked');
     }
 

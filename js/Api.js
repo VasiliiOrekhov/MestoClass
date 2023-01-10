@@ -1,15 +1,10 @@
-const userApi = {
-  baseUrl: 'https://nomoreparties.co/cohort11',
-  headers: {
-    authorization: 'e5cf0ae6-c049-4812-8bb5-267f014b9213',
-    'Content-Type': 'application/json',
-  },
-};
+import { userApi } from './constants';
 export class Api {
   constructor(options) {
     this.url = options.baseUrl;
     this.headers = options.headers;
     this.getCards();
+    this.myId = null;
   }
 
   getUserProfile() {
@@ -17,17 +12,7 @@ export class Api {
       headers: this.headers,
     }).then((res) => res.json());
   }
-  // первый вариант
-  //   changeUserProfile(name, author) {
-  //     return fetch(`${this.url}/users/me`, {
-  //       method: 'PATCH',
-  //       headers: this.headers,
-  //       body: JSON.stringify({
-  //         name: name,
-  //         about: author,
-  //       }),
-  //     });
-  //   }
+
   async changeUserProfile(name, author) {
     const result = await fetch(`${this.url}/users/me`, {
       method: 'PATCH',
@@ -38,6 +23,18 @@ export class Api {
       }),
     });
     return result;
+  }
+
+  async getId() {
+    if (this.myId) {
+      console.log('из памяти');
+      return this.myId;
+    }
+    const { _id } = await this.getUserProfile();
+    this.myId = _id;
+    console.log(this.myId);
+    console.log('с сервера');
+    return _id;
   }
 
   getCards() {

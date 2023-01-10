@@ -7,6 +7,8 @@ import { ProfilePopup } from './js/ProfilePopup';
 import { getLink } from './js/utils';
 import { api } from './js/Api';
 
+api.getId();
+
 const openCardPopupCallback = (nodeImg) => {
   const imgUrl = getLink(nodeImg.style.backgroundImage);
   openCardPopup.open(imgUrl);
@@ -14,31 +16,19 @@ const openCardPopupCallback = (nodeImg) => {
 
 //загрузка с сервера данных профиля при открытии страницы
 function getUserProfile() {
-  api
+  return api
     .getUserProfile()
     .then((res) => {
+      const id = res._id;
       const name = res.name;
       const author = res.about;
       userInfo.updateUserInfo(name, author);
+      return id;
     })
     .catch((err) => console.log(`Данные профиля с сервера не получены. Ошибка: ${err}`));
 }
 getUserProfile();
 
-//изменение данных профиля и отправка данных на сервер вариант 1
-// const editProfileCallback = (name, author) => {
-//   api
-//     .changeUserProfile(name, author)
-//     .then((res) => {
-//       if (res.ok) {
-//         return res.json();
-//       } else {
-//         throw new Error(res.status);
-//       }
-//     })
-//     .then(({ name, about }) => userInfo.updateUserInfo(name, about))
-//     .catch((err) => console.log(`Ошибка:${err}`));
-// };
 const editProfileCallback = async (name, author) => {
   try {
     //до запроса на сервер

@@ -1,18 +1,16 @@
 import { Card } from './Card';
 
 export class CardList {
-  constructor(initialCards, openCardPopupCallback) {
-    this.initialCards = initialCards;
+  constructor(openCardPopupCallback) {
     this.placesList = document.querySelector('.places-list');
     this.openCardPopupCallback = openCardPopupCallback;
   }
 
-  init() {
+  init(cardContainer) {
     const container = document.createDocumentFragment();
-    this.initialCards.forEach((el) => {
-      const card = new Card(el.name, el.link, this.openCardPopupCallback);
+    cardContainer.forEach(({ name, link, likes, _id }) => {
+      const card = new Card(name, link, likes, _id, this.openCardPopupCallback);
       const node = card.create();
-
       container.append(node);
     });
     this.render(container);

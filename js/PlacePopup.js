@@ -12,7 +12,9 @@ export class PlacePopup {
     this.allValidError = document.querySelectorAll('.popup__error');
     new FormValidator(this.form);
   }
-
+  changeButton() {
+    this.buttonJoin.textContent = 'Загрузка...';
+  }
   handle() {
     this.popup.classList.toggle('popup-opened');
     this.background.classList.toggle('popup-background-opened');
@@ -23,12 +25,11 @@ export class PlacePopup {
   }
 
   listner() {
-    this.buttonOpen.addEventListener('click', this.handle.bind(this)); //стрелочная функция или bind
+    this.buttonOpen.addEventListener('click', this.handle.bind(this)); //стрелочная функция или bind чтобы не потерять контекст
     this.buttonClose.addEventListener('click', () => this.handle());
     this.background.addEventListener('click', this.handle.bind(this));
     this.buttonJoin.addEventListener('click', (event) => {
       this.saveInfo(event);
-      this.handle();
     });
   }
 

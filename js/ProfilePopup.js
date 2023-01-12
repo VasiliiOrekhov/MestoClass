@@ -1,4 +1,5 @@
 import { FormValidator } from './FormValidator';
+
 export class ProfilePopup {
   constructor(editProfileCallback) {
     this.popup = document.querySelector('.popup-profile');
@@ -13,6 +14,9 @@ export class ProfilePopup {
     new FormValidator(this.form);
   }
 
+  changeButton() {
+    this.buttonSave.textContent = 'Загрузка...';
+  }
   handle() {
     this.popup.classList.toggle('popup-opened');
     this.background.classList.toggle('popup-background-opened');
@@ -20,6 +24,7 @@ export class ProfilePopup {
     this.allValidError.forEach(function (item) {
       item.textContent = '';
     });
+    this.buttonSave.textContent = 'Сохранить';
   }
 
   listner() {
@@ -27,7 +32,6 @@ export class ProfilePopup {
     this.buttonClose.addEventListener('click', this.handle.bind(this));
     this.background.addEventListener('click', this.handle.bind(this));
     this.buttonSave.addEventListener('click', this.saveInfo.bind(this));
-    this.buttonSave.addEventListener('click', this.handle.bind(this));
   }
 
   saveInfo(event) {

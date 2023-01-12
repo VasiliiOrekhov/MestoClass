@@ -5,12 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Mesto</title>
-    <link rel="stylesheet" href="./pages/index.css" />
   </head>
   <body>
     <div class="root">
       <header class="header root__section">
-        <img src="./images/logo.svg" alt="mesto logo" class="logo" />
+        <img src="<%=require('./images/logo.svg')%>" alt="mesto logo" class="logo" />
       </header>
       <div class="profile root__section">
         <div class="user-info">
@@ -26,7 +25,11 @@
       <div class="places-list root__section"></div>
       <div class="popup popup-place">
         <div class="popup__content">
-          <img src="./images/close.svg" alt="" class="popup__close popup__close_place" />
+          <img
+            src="<%=require('./images/close.svg')%>"
+            alt=""
+            class="popup__close popup__close_place"
+          />
           <h3 class="popup__title">Новое место</h3>
           <form class="popup__form popup__form_card" name="new">
             <input
@@ -54,7 +57,11 @@
       </div>
       <div class="popup popup-profile">
         <div class="popup__content">
-          <img src="./images/close.svg" alt="" class="popup__close popup__close_profile" />
+          <img
+            src="<%=require('./images/close.svg')%>"
+            alt=""
+            class="popup__close popup__close_profile"
+          />
           <h3 class="popup__title">Редактировать профиль</h3>
           <form class="popup__form popup__form_author" name="new">
             <input
@@ -82,7 +89,11 @@
         </div>
       </div>
       <div class="popup popup-open_img">
-        <img src="./images/close.svg" alt="" class="popup__close popup__close_img" />
+        <img
+          src="<%=require('./images/close.svg')%>"
+          alt=""
+          class="popup__close popup__close_img"
+        />
         <img
           src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg"
           alt=""
@@ -93,6 +104,5 @@
       <div class="popup-background popup-background_card"></div>
       <div class="popup-background popup-background_profile"></div>
     </div>
-    <script src="index.js" type="module"></script>
   </body>
 </html>

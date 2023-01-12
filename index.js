@@ -1,11 +1,11 @@
 import { CardList } from './js/CardList';
 import { UserInfo } from './js/UserInfo';
 import { OpenCardPopup } from './js/OpenCardPopup';
-import { initialCards } from './js/constants';
 import { PlacePopup } from './js/PlacePopup';
 import { ProfilePopup } from './js/ProfilePopup';
 import { getLink } from './js/utils';
 import { api } from './js/Api';
+import './pages/index.css';
 
 api.getId();
 
@@ -68,4 +68,4 @@ const userInfo = new UserInfo();
 const profilePopup = new ProfilePopup(editProfileCallback);
 const placePopup = new PlacePopup(newCardCallback);
 const openCardPopup = new OpenCardPopup();
-const cardList = new CardList(initialCards, openCardPopupCallback);
+const cardList = new CardList(openCardPopupCallback);

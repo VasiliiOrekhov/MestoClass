@@ -32,8 +32,6 @@ export class Api {
     }
     const { _id } = await this.getUserProfile();
     this.myId = _id;
-    console.log(this.myId);
-    console.log('с сервера');
     return _id;
   }
 
